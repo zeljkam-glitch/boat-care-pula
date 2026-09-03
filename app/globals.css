@@ -112,7 +112,7 @@ h1,h2,h3,.heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy
 .reportExample footer{display:flex;align-items:center;gap:.6rem;margin-top:1rem;padding:1rem 0 0;background:none;color:var(--muted);font-size:.78rem}
 
 .mobile{top:86px;padding:1.5rem 5vw 2rem;background:var(--paper);color:var(--navy);box-shadow:0 16px 30px rgba(7,27,38,.12)}
-.mobile a{display:block;padding:1rem 0;border:0;font-family:var(--font-display);font-size:clamp(1.35rem,3vw,2rem);font-weight:650;letter-spacing:-.02em}
+.mobile a{display:block;padding:1rem 0;border:0;font-family:var(--font-display);font-size:clamp(1.25rem,3vw,1.8rem);font-weight:450;letter-spacing:-.01em}
 
 footer{background:var(--paper);color:var(--navy)}
 .footMain .brand,.footMain>div{color:var(--navy)}
