@@ -77,7 +77,7 @@ export default function Home() {
 
   return <main>
     <header className="header">
-      <a className="brand" href="#top"><img src="/brand/boat-care-mark.png" alt=""/><span>BOAT CARE<small>PULA MARINE SERVICES</small></span></a>
+      <a className="brand brandFull" href="#top" aria-label="Boat Care and Check"><img src="/brand/boat-care-logo-full.png" alt="Boat Care and Check"/></a>
       <nav className="nav">{nav.map(([href,label]) => <a key={href} href={href}>{label}</a>)}</nav>
       <div className="actions"><div className="lang" aria-label="Language">{(['hr','en','de'] as Lang[]).map((item,i) => <span key={item}><button className={lang === item ? 'on' : ''} onClick={() => setLang(item)}>{item.toUpperCase()}</button>{i < 2 && <i>/</i>}</span>)}</div><a className="mini" href="https://wa.me/385915033936">WhatsApp <ArrowRight size={14}/></a><button className="menu" onClick={() => setMenuOpen(!menuOpen)} aria-label="Menu">{menuOpen ? <X/> : <Menu/>}</button></div>
       {menuOpen && <nav className="mobile">{nav.map(([href,label]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>}
@@ -105,7 +105,7 @@ export default function Home() {
 
     <section className="final"><div><p className="kicker light">{t.ctaK}</p><h2>{t.ctaT}</h2><p>{t.ctaB}</p></div><div className="ctaBtns"><a className="button gold" href="https://wa.me/385915033936"><MessageCircle/>{t.whatsapp}</a><a className="button outline" href="tel:+385915033936">{t.call}<span>+385 91 503 3936</span></a></div></section>
 
-    <footer><div className="footMain"><a className="brand" href="#top"><img src="/brand/boat-care-mark.png" alt=""/><span>BOAT CARE<small>PULA MARINE SERVICES</small></span></a><p>{t.footer}</p><div><a href="mailto:boatcarepula@gmail.com">boatcarepula@gmail.com</a><a href="tel:+385915033936">+385 91 503 3936</a><a href="https://instagram.com/boatcarepula">@boatcarepula</a></div></div><div className="footBottom"><span>© 2026 Boat Care Pula</span><nav><a href="#legal">Privacy</a><a href="#legal">Cookies</a><a href="#legal">Impressum</a></nav></div><p className="legal" id="legal">{t.legal}</p></footer>
+    <footer><div className="footMain"><a className="brand brandFull" href="#top" aria-label="Boat Care and Check"><img src="/brand/boat-care-logo-full.png" alt="Boat Care and Check"/></a><p>{t.footer}</p><div><a href="mailto:boatcarepula@gmail.com">boatcarepula@gmail.com</a><a href="tel:+385915033936">+385 91 503 3936</a><a href="https://instagram.com/boatcarepula">@boatcarepula</a></div></div><div className="footBottom"><span>© 2026 Boat Care Pula</span><nav><a href="#legal">Privacy</a><a href="#legal">Cookies</a><a href="#legal">Impressum</a></nav></div><p className="legal" id="legal">{t.legal}</p></footer>
     <a className="float" href="https://wa.me/385915033936" aria-label="WhatsApp"><MessageCircle/></a>
   </main>;
 }
