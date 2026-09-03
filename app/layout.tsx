@@ -1,1 +1,14 @@
-m«ëˆ§½©buªàºg§µªiþV²¢ëm³,j›jÇºà7an{¦Š)ßŠW¨¢ë_ŠW›n·š‘ºÞjG§r‡^v‹­¦ën¦)í¢X§zÊ•éà¶î˜7]yÊy×œ¡×¢ž›­†¥¥Ø¬¦V²¶¬™ë,j¢Šzn¶)éº×â•ç^}«¥µú+²×bžŠ.¶›­¢ëiº×â•ç^}«¥µú+²×hº
+import type { Metadata } from 'next';
+import './globals.css';
+
+export const metadata: Metadata = {
+  title: 'Boat Care Pula | Boat Care & Maintenance in Istria',
+  description: 'Regular boat checks, maintenance and concierge support in Pula, Veruda, Bunarina and Medulin. Reliable local care while you are away.',
+  keywords: ['boat care Pula', 'boat maintenance Pula', 'boat check Istria', 'marina services Pula', 'boat concierge Croatia'],
+  openGraph: { title: 'Boat Care Pula | Local care while you are away', description: 'Regular checks, clear reports and reliable local support in Pula and southern Istria.', type: 'website', locale: 'en_GB', images: [{ url: '/og.jpg', width: 1200, height: 630, alt: 'Boat Care Pula, local care while you are away' }] },
+  twitter: { card: 'summary_large_image', title: 'Boat Care Pula | Local care while you are away', description: 'Regular checks, clear reports and reliable local support in Pula and southern Istria.', images: ['/og.jpg'] },
+};
+
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  return <html lang="en"><body>{children}</body></html>;
+}
