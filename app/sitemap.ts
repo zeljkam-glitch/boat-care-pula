@@ -1,0 +1,10 @@
+import type { MetadataRoute } from 'next';
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return [
+    { url: 'https://www.boatcarepula.com/', changeFrequency: 'monthly', priority: 1 },
+    { url: 'https://www.boatcarepula.com/privacy', changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://www.boatcarepula.com/cookies', changeFrequency: 'yearly', priority: 0.2 },
+    { url: 'https://www.boatcarepula.com/impressum', changeFrequency: 'yearly', priority: 0.2 },
+  ];
+}
