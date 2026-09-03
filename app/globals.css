@@ -260,6 +260,7 @@ body{background:var(--paper)}
 .addonList>div{background:rgba(255,255,255,.07)}
 .concierge{background:var(--paper)}
 .conciergeGrid span{color:#8c7040}
+.why{border:0!important}
 .whyCopy{background:var(--cream)}
 .values svg{color:#8c7040}
 .area{background:#f4f0e7}
