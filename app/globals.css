@@ -226,6 +226,8 @@ body{background:var(--paper)}
 .photoHero .trust{min-height:92px;background:#04141c}
 .trust div{border:0;color:rgba(255,255,255,.66)}
 .trust svg{color:var(--sand)}
+.photoHero .trust div{min-height:108px;padding:1.5rem 2.5rem;gap:1.15rem}
+.photo img,.areaPhoto img{display:block}
 
 .section{padding-top:clamp(6.5rem,10vw,10rem);padding-bottom:clamp(6.5rem,10vw,10rem);border:0}
 .cream{background:var(--cream);color:var(--ink);border:0}
@@ -277,4 +279,4 @@ footer{background:#04141c}
 .footMain .brand img{filter:brightness(0) invert(1)!important}
 
 @media(max-width:980px){.header{min-height:86px}.mobile{top:86px}.heroContent h1{font-size:clamp(3.6rem,10vw,6.5rem)}}
-@media(max-width:680px){.header{min-height:74px}.mobile{top:74px}.heroContent h1{font-size:clamp(3.35rem,15vw,5rem);line-height:1}.textHero .heroContent{padding-top:6rem;padding-bottom:6rem}.photoHero .trust{min-height:0}}
+@media(max-width:680px){.header{min-height:74px}.mobile{top:74px}.heroContent h1{font-size:clamp(3.35rem,15vw,5rem);line-height:1}.textHero .heroContent{padding-top:6rem;padding-bottom:6rem}.photoHero .trust{min-height:0}.photoHero .trust div{min-height:88px;padding:1.25rem 24px;gap:1rem}}
