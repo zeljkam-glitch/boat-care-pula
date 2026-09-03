@@ -145,7 +145,7 @@ export default function Home() {
 
     <section className="final"><div><p className="kicker light">{t.ctaK}</p><h2>{t.ctaT}</h2><p>{t.ctaB}</p></div><div className="ctaBtns"><a className="button gold" href="https://wa.me/385915033936"><MessageCircle/>{t.whatsapp}</a><a className="button outline" href="tel:+385915033936">{t.call}<span>+385 91 503 3936</span></a></div></section>
 
-    <footer><div className="footMain"><a className="brand brandFull" href="#top" aria-label="Boat Care and Check"><img src="/brand/boat-care-logo-full.png" alt="Boat Care and Check"/></a><p>{t.footer}</p><div><a href="mailto:boatcarepula@gmail.com">boatcarepula@gmail.com</a><a href="tel:+385915033936">+385 91 503 3936</a><a href="https://instagram.com/boatcarepula">@boatcarepula</a></div></div><div className="footBottom"><span>© 2026 Boat Care Pula</span><nav><a href="#legal">Privacy</a><a href="#legal">Cookies</a><a href="#legal">Impressum</a></nav></div><p className="legal" id="legal">{t.legal}</p></footer>
+    <footer><div className="footMain"><a className="brand brandFull" href="#top" aria-label="Boat Care and Check"><img src="/brand/boat-care-logo-full.png" alt="Boat Care and Check"/></a><p>{t.footer}</p><div><a href="mailto:boatcarepula@gmail.com">boatcarepula@gmail.com</a><a href="tel:+385915033936">+385 91 503 3936</a><a href="https://instagram.com/boatcarepula">@boatcarepula</a></div></div><div className="footBottom"><span>© 2026 Boat Care Pula</span><nav><a href="#legal">Privacy</a><a href="#legal">Cookies</a><a href="#legal">Impressum</a></nav></div></footer>
     <a className="float" href="https://wa.me/385915033936" aria-label="WhatsApp"><MessageCircle/></a>
   </main>;
 }
