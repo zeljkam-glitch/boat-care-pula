@@ -83,7 +83,7 @@ export default function Home() {
       {menuOpen && <nav className="mobile">{nav.map(([href,label]) => <a key={href} href={href} onClick={() => setMenuOpen(false)}>{label}</a>)}</nav>}
     </header>
 
-    <section className="hero photoHero textHero" id="top"><div className="heroContent"><p className="eyebrow"><span/>{t.eyebrow}</p><h1>{t.hero}</h1><p className="intro">{t.intro}</p><div className="heroBtns"><a className="button gold" href="https://wa.me/385915033936">{t.primary}<ArrowRight size={18}/></a><a className="textLink" href="#plans">{t.secondary}<ArrowDown size={17}/></a></div></div><div className="heroSignal" aria-hidden="true"><span>LOCAL</span><strong>01</strong><small>PULA · ISTRIA</small></div><div className="trust">{t.trust.map((x,i) => <div key={x}>{i === 0 ? <MapPin/> : i === 1 ? <ShieldCheck/> : <MessageCircle/>}<span>{x}</span></div>)}</div></section>
+    <section className="hero photoHero textHero" id="top"><div className="heroContent"><p className="eyebrow"><span/>{t.eyebrow}</p><h1>{t.hero}</h1><p className="intro">{t.intro}</p><div className="heroBtns"><a className="button gold" href="https://wa.me/385915033936">{t.primary}<ArrowRight size={18}/></a><a className="textLink" href="#plans">{t.secondary}<ArrowDown size={17}/></a></div></div><div className="trust">{t.trust.map((x,i) => <div key={x}>{i === 0 ? <MapPin/> : i === 1 ? <ShieldCheck/> : <MessageCircle/>}<span>{x}</span></div>)}</div></section>
 
     <section className="section cream"><div className="split"><div><p className="kicker">{t.problemK}</p><h2>{t.problemT}</h2></div><p>{t.problemB}</p></div></section>
 

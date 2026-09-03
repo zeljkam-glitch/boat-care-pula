@@ -77,12 +77,12 @@
 
 /* Final typography, navigation and open-surface corrections */
 :root{--font-display:"Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif}
-h1,h2,h3,.heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2,.planGrid h3{font-family:var(--font-display);font-kerning:normal;letter-spacing:-.012em}
-.heroContent h1{letter-spacing:-.018em;line-height:.94;font-weight:650}
+h1,h2,h3,.heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2,.planGrid h3{font-family:var(--font-display);font-kerning:normal;letter-spacing:-.022em}
+.heroContent h1{letter-spacing:-.028em;line-height:.94;font-weight:650}
 .heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2{line-height:1.04;font-weight:600}
 
-.textHero{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);background:var(--blue)}
-.textHero .heroContent{grid-column:1;max-width:none;padding-right:4vw}
+.textHero{grid-template-columns:1fr;background:var(--blue)}
+.textHero .heroContent{grid-column:1;max-width:1180px;padding-right:7vw}
 .heroSignal{grid-column:2;grid-row:1;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:7vw;color:#fff;background:var(--blue-dark)}
 .heroSignal span,.heroSignal small{font-size:.72rem;font-weight:700;letter-spacing:.18em}
 .heroSignal strong{font-family:var(--font-display);font-size:clamp(8rem,18vw,20rem);line-height:.82;letter-spacing:-.07em;font-weight:650}
@@ -120,7 +120,7 @@ footer{background:var(--paper);color:var(--navy)}
 .footMain .brand small,.footMain>p,.footBottom,.legal{color:rgba(7,27,38,.58)}
 .footBottom{border:0}
 
-@media(max-width:980px){.textHero{grid-template-columns:1fr;grid-template-rows:auto auto auto}.textHero .heroContent{grid-column:1;grid-row:1}.heroSignal{grid-column:1;grid-row:2;min-height:300px;padding:7vw}.textHero .trust{grid-column:1;grid-row:3}.steps article:nth-child(even){padding-top:2.8rem}.reportSection{grid-template-columns:1fr}.mobile{top:86px}}
+@media(max-width:980px){.textHero{grid-template-columns:1fr;grid-template-rows:auto auto}.textHero .heroContent{grid-column:1;grid-row:1}.textHero .trust{grid-column:1;grid-row:2}.steps article:nth-child(even){padding-top:2.8rem}.reportSection{grid-template-columns:1fr}.mobile{top:86px}}
 @media(max-width:680px){.mobile{top:72px}.heroContent h1{line-height:.98}.heroSignal{min-height:230px;padding:3rem 20px}.heroSignal strong{font-size:9rem}.steps article,.steps article+article,.steps article:nth-child(even){padding:1.8rem 0;border:0!important}.reportExample{margin:2rem 20px}.reportExample>div p{align-items:flex-start;flex-direction:column}.addonList>div{padding:1rem .7rem}}
 
 /* Supplied full logo */
