@@ -1,7 +1,7 @@
 'use client';
 
-import { useEffect, useState } from 'react';
-import { ArrowDown, ArrowRight, BatteryCharging, Check, ChevronDown, Droplets, Gauge, MapPin, Menu, MessageCircle, ShieldCheck, Waves, Wind, X } from 'lucide-react';
+import { useEffect, useState, type FormEvent } from 'react';
+import { ArrowDown, ArrowRight, BatteryCharging, CalendarCheck, Check, ChevronDown, ClipboardList, Droplets, FileCheck2, Gauge, History, MapPin, Menu, MessageCircle, Send, ShieldCheck, ShoppingBag, Waves, Wind, X } from 'lucide-react';
 
 type Lang = 'hr' | 'en' | 'de';
 type Size = 'small' | 'medium' | 'large';
@@ -66,6 +66,42 @@ const content = {
 const checkIcons = { water: Droplets, wind: Wind, battery: BatteryCharging, waves: Waves, gauge: Gauge, shield: ShieldCheck };
 const sizeKeys: Size[] = ['small', 'medium', 'large'];
 
+const toolContent = {
+  hr: {
+    kicker: 'Digitalna briga', title: 'Manje dopisivanja. Više riješenih stvari.', body: 'Pošaljite podatke o brodu, naručite pripremu dolaska ili pregledajte kako izgleda uredna evidencija obilazaka.',
+    tabs: ['Prvi upit','Primjer izvještaja','Pre-arrival','Odobrenje rada','Servisna povijest'],
+    inquiryTitle: 'Recite nam gdje je brod i što vam treba.', marina: 'Marina', marinas: ['Marina Polesana','Pula','Veruda','Bunarina','Medulin','Druga lokacija'], length: 'Duljina broda', rhythm: 'Željeni ritam', rhythms: ['Jednom mjesečno','Dvaput mjesečno','Jednom tjedno','Nisam siguran'], arrival: 'Sljedeći dolazak u Pulu', note: 'Što vam je posebno važno?', send: 'Pošaljite upit putem WhatsAppa', optional: 'Nije obavezno',
+    reportTitle: 'Primjer izvještaja nakon obilaska', sample: 'DEMO PRIKAZ', reportMeta: 'Marina Polesana · vez B24 · 09:42', reportRows: [['Vez i bokobrani','U redu'],['Kaljuža','Suha'],['Akumulator','12,7 V'],['Pokrov i unutrašnjost','U redu'],['Fotografije','4 priložene']], reportInfo: 'Kliknite stavku za detalj.', reportDetails: ['Konopi su pravilno zategnuti. Bokobrani su na mjestu.','Nema vidljive vode ni znakova prodora.','Napon zabilježen pri obilasku.','Pokrov je pričvršćen. Kabina je bez vidljive vlage.','Fotografirani su vez, kokpit, kaljuža i stanje akumulatora.'],
+    arrivalTitle: 'Što treba biti spremno prije vašeg dolaska?', arrivalDate: 'Datum dolaska', arrivalItems: ['Provjetriti i pripremiti kabinu','Uključiti hladnjak','Nabaviti namirnice prema popisu','Dostaviti čistu posteljinu i ručnike','Oprati brod','Provjeriti akumulator','Preuzeti ili dostaviti rublje'], shopping: 'Popis za kupnju ili dodatna napomena', request: 'Pošaljite pre-arrival zahtjev',
+    approvalTitle: 'Dodatni rad se ne izvodi bez vašeg odobrenja.', estimate: 'Primjer prijedloga', issue: 'Prednji desni bokobran treba zamijeniti.', price: 'Procijenjeni trošak: €45', approve: 'Odobravam putem WhatsAppa', discuss: 'Želim prvo razgovarati',
+    historyTitle: 'Sve što se događalo s brodom, na jednom mjestu.', historyNote: 'Primjer servisne povijesti', history: [['28. kol','Redoviti obilazak','Sve u redu · 4 fotografije'],['16. kol','Pre-arrival priprema','Kabina provjetrena · hladnjak uključen'],['03. kol','Pregled nakon kiše','Kaljuža suha · pokrov pričvršćen'],['21. srp','Pranje broda','Usluga završena i fotografirana']]
+  },
+  en: {
+    kicker: 'Digital boat care', title: 'Less back and forth. More things handled.', body: 'Send the boat details, request arrival preparation or see what a clear service record looks like.',
+    tabs: ['First enquiry','Sample report','Pre-arrival','Approve work','Service history'],
+    inquiryTitle: 'Tell us where the boat is and what you need.', marina: 'Marina', marinas: ['Marina Polesana','Pula','Veruda','Bunarina','Medulin','Another location'], length: 'Boat length', rhythm: 'Preferred schedule', rhythms: ['Once a month','Twice a month','Once a week','Not sure yet'], arrival: 'Next arrival in Pula', note: 'Anything we should pay special attention to?', send: 'Send the enquiry on WhatsApp', optional: 'Optional',
+    reportTitle: 'Sample report after a visit', sample: 'DEMO VIEW', reportMeta: 'Marina Polesana · berth B24 · 09:42', reportRows: [['Lines and fenders','OK'],['Bilge','Dry'],['Battery','12.7 V'],['Cover and interior','OK'],['Photos','4 attached']], reportInfo: 'Select an item for details.', reportDetails: ['Lines are correctly tensioned. Fenders are in place.','No visible water or signs of ingress.','Voltage recorded during the visit.','The cover is secure. No visible moisture in the cabin.','Photos show the berth, cockpit, bilge and battery reading.'],
+    arrivalTitle: 'What should be ready before you arrive?', arrivalDate: 'Arrival date', arrivalItems: ['Air and prepare the cabin','Switch on the fridge','Buy groceries from my list','Deliver clean bedding and towels','Wash the boat','Check the battery','Collect or deliver laundry'], shopping: 'Shopping list or an extra note', request: 'Send the pre-arrival request',
+    approvalTitle: 'No extra work starts without your approval.', estimate: 'Sample proposal', issue: 'The forward starboard fender needs replacing.', price: 'Estimated cost: €45', approve: 'Approve on WhatsApp', discuss: 'Talk to Filip first',
+    historyTitle: 'Everything that happened to the boat, in one place.', historyNote: 'Sample service history', history: [['28 Aug','Regular visit','All OK · 4 photos'],['16 Aug','Pre-arrival preparation','Cabin aired · fridge switched on'],['03 Aug','Check after rain','Bilge dry · cover secure'],['21 Jul','Boat wash','Service completed and photographed']]
+  },
+  de: {
+    kicker: 'Digitale Betreuung', title: 'Weniger Nachrichten. Mehr erledigte Aufgaben.', body: 'Senden Sie die Bootsdaten, bestellen Sie die Vorbereitung Ihrer Ankunft oder sehen Sie, wie eine klare Servicehistorie aussieht.',
+    tabs: ['Erste Anfrage','Beispielbericht','Vor Ankunft','Arbeit freigeben','Servicehistorie'],
+    inquiryTitle: 'Sagen Sie uns, wo das Boot liegt und was Sie brauchen.', marina: 'Marina', marinas: ['Marina Polesana','Pula','Veruda','Bunarina','Medulin','Anderer Standort'], length: 'Bootslänge', rhythm: 'Gewünschter Rhythmus', rhythms: ['Einmal im Monat','Zweimal im Monat','Einmal pro Woche','Noch nicht sicher'], arrival: 'Nächste Ankunft in Pula', note: 'Worauf sollen wir besonders achten?', send: 'Anfrage per WhatsApp senden', optional: 'Optional',
+    reportTitle: 'Beispielbericht nach einem Besuch', sample: 'DEMOANSICHT', reportMeta: 'Marina Polesana · Liegeplatz B24 · 09:42', reportRows: [['Leinen und Fender','In Ordnung'],['Bilge','Trocken'],['Batterie','12,7 V'],['Abdeckung und Innenraum','In Ordnung'],['Fotos','4 angehängt']], reportInfo: 'Wählen Sie einen Punkt für Details.', reportDetails: ['Leinen sind richtig gespannt. Die Fender sind an ihrem Platz.','Kein sichtbares Wasser und keine Anzeichen für Wassereintritt.','Spannung beim Besuch dokumentiert.','Die Abdeckung ist befestigt. Keine sichtbare Feuchtigkeit in der Kabine.','Fotos zeigen Liegeplatz, Cockpit, Bilge und Batteriewert.'],
+    arrivalTitle: 'Was soll vor Ihrer Ankunft vorbereitet sein?', arrivalDate: 'Ankunftsdatum', arrivalItems: ['Kabine lüften und vorbereiten','Kühlschrank einschalten','Lebensmittel nach Liste einkaufen','Saubere Bettwäsche und Handtücher bringen','Boot waschen','Batterie prüfen','Wäsche abholen oder liefern'], shopping: 'Einkaufsliste oder zusätzliche Nachricht', request: 'Anfrage vor Ankunft senden',
+    approvalTitle: 'Zusätzliche Arbeiten beginnen erst nach Ihrer Freigabe.', estimate: 'Beispielvorschlag', issue: 'Der vordere Fender an Steuerbord muss ersetzt werden.', price: 'Geschätzte Kosten: €45', approve: 'Per WhatsApp freigeben', discuss: 'Zuerst mit Filip sprechen',
+    historyTitle: 'Alles rund um das Boot an einem Ort.', historyNote: 'Beispiel einer Servicehistorie', history: [['28. Aug','Regelmäßige Kontrolle','Alles in Ordnung · 4 Fotos'],['16. Aug','Vorbereitung vor Ankunft','Kabine gelüftet · Kühlschrank eingeschaltet'],['03. Aug','Kontrolle nach Regen','Bilge trocken · Abdeckung befestigt'],['21. Juli','Bootswäsche','Service erledigt und fotografiert']]
+  }
+};
+
+const conciergeContent = {
+  hr: { kicker: 'Polesana concierge', title: 'Stvari koje ne trebate rješavati iz druge države.', body: 'Filip može preuzeti praktične zadatke prije dolaska, nakon odlaska ili dok je brod na vezu.', items: ['Nabava namirnica prema popisu','Pranje i dostava rublja','Zamjena posteljine i ručnika','Priprema broda prije dolaska','Zatvaranje broda nakon odlaska','Preuzimanje paketa za brod','Koordinacija lokalnog servisera','Prisutnost tijekom dolaska majstora','Fotografiranje obavljenih radova','Pregled nakon oluje ili jake kiše','Provjera prije dužeg putovanja vlasnika','Sezonsko otvaranje i zatvaranje broda','Vođenje popisa potrošnog materijala','Podsjetnici za registraciju, servis i osiguranje'] },
+  en: { kicker: 'Polesana concierge', title: 'Practical jobs you should not have to manage from another country.', body: 'Filip can handle useful tasks before you arrive, after you leave or while the boat stays at its berth.', items: ['Groceries bought from your list','Laundry collection and delivery','Fresh bedding and towel change','Boat preparation before arrival','Closing the boat after departure','Receiving parcels for the boat','Coordinating a local service provider','Being present when a technician visits','Photographing completed work','Checks after a storm or heavy rain','A check before the owner is away for longer','Seasonal opening and closing','Keeping track of consumable supplies','Reminders for registration, service and insurance'] },
+  de: { kicker: 'Polesana Concierge', title: 'Praktische Aufgaben, die Sie nicht aus dem Ausland organisieren müssen.', body: 'Filip übernimmt Aufgaben vor Ihrer Ankunft, nach Ihrer Abreise oder während das Boot am Liegeplatz bleibt.', items: ['Einkauf nach Ihrer Liste','Wäsche abholen und liefern','Bettwäsche und Handtücher wechseln','Boot vor der Ankunft vorbereiten','Boot nach der Abreise schließen','Pakete für das Boot annehmen','Lokalen Servicebetrieb koordinieren','Beim Besuch eines Technikers anwesend sein','Erledigte Arbeiten fotografieren','Kontrolle nach Sturm oder starkem Regen','Kontrolle vor längerer Abwesenheit','Saisonale Öffnung und Schließung','Verbrauchsmaterial im Blick behalten','Erinnerungen für Registrierung, Service und Versicherung'] }
+};
+
 export default function Home() {
   const [lang, setLang] = useState<Lang>('en');
   const [size, setSize] = useState<Size>('small');
@@ -97,9 +133,13 @@ export default function Home() {
 
     <section className="section addons"><div><p className="kicker">{t.addonsK}</p><h2>{t.addonsT}</h2><p>{t.addonsNote}</p></div><div className="addonList">{t.addons.map(([name,price],i) => <div key={name}><StepNumber number={`0${i+1}`} side={i % 2 ? 'right' : 'left'}/><strong>{name}</strong><b>{price}</b></div>)}</div></section>
 
+    <Concierge lang={lang}/>
+
     <section className="why" id="about"><div className="photo"><img src="/brand/filip-inspection.jpg" alt="Filip inspecting a boat in Pula"/></div><div className="whyCopy"><p className="kicker light">{t.whyK}</p><h2>{t.whyT}</h2><p>{t.whyB}</p><div className="values">{t.values.map(([title,body]) => <div key={title}><ShieldCheck/><span><strong>{title}</strong><small>{body}</small></span></div>)}</div></div></section>
 
     <section className="section area"><div><p className="kicker">{t.areaK}</p><h2>{t.areaT}</h2><p>{t.areaB}</p></div><figure className="areaPhoto"><img src="/brand/filip-checklist-wide.jpg" alt="Filip completing a boat inspection checklist"/><figcaption><MapPin/> Pula, Istria</figcaption></figure></section>
+
+    <ClientTools lang={lang}/>
 
     <section className="section faq" id="faq"><Heading kicker="FAQ" title={t.faqT}/><div>{t.faq.map(([question,answer]) => <details key={question}><summary>{question}<ChevronDown/></summary><p>{answer}</p></details>)}</div></section>
 
@@ -112,3 +152,25 @@ export default function Home() {
 
 function Heading({kicker,title,body,center=false}:{kicker:string,title:string,body?:string,center?:boolean}) { return <div className={`heading ${center ? 'center' : ''}`}><p className="kicker">{kicker}</p><h2>{title}</h2>{body && <p>{body}</p>}</div>; }
 function StepNumber({number,side}:{number:string,side:'left'|'right'}) { return <div className={`stepNumber ${side}`}><span/><strong>{number}</strong><span/></div>; }
+
+function Concierge({lang}:{lang:Lang}) {
+  const c = conciergeContent[lang];
+  return <section className="section concierge"><div className="conciergeIntro"><p className="kicker">{c.kicker}</p><h2>{c.title}</h2><p>{c.body}</p></div><div className="conciergeGrid">{c.items.map((item,i) => <article key={item}><span>{String(i+1).padStart(2,'0')}</span><p>{item}</p></article>)}</div></section>;
+}
+
+function ClientTools({lang}:{lang:Lang}) {
+  const c = toolContent[lang];
+  const [active,setActive] = useState(0);
+  const [reportItem,setReportItem] = useState(0);
+  const [arrivalItems,setArrivalItems] = useState<string[]>([]);
+  const whatsapp = (message:string) => window.open(`https://wa.me/385915033936?text=${encodeURIComponent(message)}`,'_blank','noopener,noreferrer');
+  const submitInquiry = (event:FormEvent<HTMLFormElement>) => { event.preventDefault(); const form = new FormData(event.currentTarget); whatsapp(`Boat Care Pula enquiry\nMarina: ${form.get('marina')}\nBoat length: ${form.get('length')}\nSchedule: ${form.get('rhythm')}\nNext arrival: ${form.get('arrival') || c.optional}\nNote: ${form.get('note') || c.optional}`); };
+  const submitArrival = (event:FormEvent<HTMLFormElement>) => { event.preventDefault(); const form = new FormData(event.currentTarget); whatsapp(`Boat Care Pula pre-arrival request\nArrival: ${form.get('arrivalDate')}\nPlease prepare: ${arrivalItems.join(', ') || c.optional}\nNote: ${form.get('shopping') || c.optional}`); };
+  return <section className="section clientTools" id="tools"><Heading kicker={c.kicker} title={c.title} body={c.body}/><div className="toolTabs" role="tablist">{c.tabs.map((tab,i) => <button key={tab} className={active === i ? 'active' : ''} onClick={() => setActive(i)} role="tab" aria-selected={active === i}>{tab}</button>)}</div><div className="toolPanel">
+    {active === 0 && <form className="toolForm" onSubmit={submitInquiry}><h3>{c.inquiryTitle}</h3><div className="formGrid"><label>{c.marina}<select name="marina">{c.marinas.map(x => <option key={x}>{x}</option>)}</select></label><label>{c.length}<input name="length" type="text" placeholder="10.5 m" required/></label><label>{c.rhythm}<select name="rhythm">{c.rhythms.map(x => <option key={x}>{x}</option>)}</select></label><label>{c.arrival}<input name="arrival" type="date"/></label></div><label>{c.note}<textarea name="note" rows={3} placeholder={c.optional}/></label><button className="toolAction" type="submit"><Send/>{c.send}</button></form>}
+    {active === 1 && <div className="interactiveReport"><div><span className="demoLabel">{c.sample}</span><h3>{c.reportTitle}</h3><p>{c.reportMeta}</p><small>{c.reportInfo}</small></div><div className="reportList">{c.reportRows.map(([label,value],i) => <button key={label} className={reportItem === i ? 'active' : ''} onClick={() => setReportItem(i)}><span>{label}</span><strong><Check/>{value}</strong></button>)}</div><p className="reportDetail">{c.reportDetails[reportItem]}</p></div>}
+    {active === 2 && <form className="toolForm" onSubmit={submitArrival}><h3>{c.arrivalTitle}</h3><label>{c.arrivalDate}<input name="arrivalDate" type="date" required/></label><div className="requestChecks">{c.arrivalItems.map(item => <label key={item}><input type="checkbox" checked={arrivalItems.includes(item)} onChange={() => setArrivalItems(items => items.includes(item) ? items.filter(x => x !== item) : [...items,item])}/><span><Check/>{item}</span></label>)}</div><label>{c.shopping}<textarea name="shopping" rows={4} placeholder={c.optional}/></label><button className="toolAction" type="submit"><CalendarCheck/>{c.request}</button></form>}
+    {active === 3 && <div className="approvalTool"><FileCheck2/><p className="demoLabel">{c.estimate}</p><h3>{c.approvalTitle}</h3><div><strong>{c.issue}</strong><span>{c.price}</span></div><button className="toolAction" onClick={() => whatsapp(`Boat Care Pula\nApproved: ${c.issue}\n${c.price}`)}><Check/>{c.approve}</button><a href="tel:+385915033936">{c.discuss}</a></div>}
+    {active === 4 && <div className="historyTool"><div><History/><span><b>{c.historyTitle}</b><small>{c.historyNote}</small></span></div><ol>{c.history.map(([date,title,note]) => <li key={`${date}${title}`}><time>{date}</time><span><strong>{title}</strong><small>{note}</small></span></li>)}</ol></div>}
+  </div></section>;
+}
