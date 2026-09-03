@@ -77,8 +77,8 @@
 
 /* Final typography, navigation and open-surface corrections */
 :root{--font-display:"Avenir Next",Avenir,"Helvetica Neue",Helvetica,Arial,sans-serif}
-h1,h2,h3,.heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2,.planGrid h3{font-family:var(--font-display);font-kerning:normal;letter-spacing:-.025em}
-.heroContent h1{letter-spacing:-.035em;line-height:.94;font-weight:650}
+h1,h2,h3,.heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2,.planGrid h3{font-family:var(--font-display);font-kerning:normal;letter-spacing:-.012em}
+.heroContent h1{letter-spacing:-.018em;line-height:.94;font-weight:650}
 .heading h2,.split h2,.addons h2,.why h2,.area h2,.final h2,.reportCopy h2{line-height:1.04;font-weight:600}
 
 .textHero{grid-template-columns:minmax(0,1.25fr) minmax(280px,.75fr);background:var(--blue)}
