@@ -218,7 +218,8 @@ body{background:var(--paper)}
 .textHero .heroContent{padding-top:clamp(7rem,11vw,11rem);padding-bottom:clamp(7rem,11vw,11rem)}
 .heroContent h1{max-width:1080px;font-size:clamp(3.8rem,7vw,8rem);font-weight:590;letter-spacing:-.03em;line-height:.96}
 .heroContent .eyebrow,.cream .kicker,.reportCopy .kicker,.addons .kicker,.clientTools .kicker,.final .kicker{color:var(--sand)}
-.heroContent .eyebrow span{background:var(--sand)}
+.heroContent .eyebrow{gap:0}
+.heroContent .eyebrow span{display:none}
 .heroContent .intro{max-width:670px;margin-top:2.4rem;font-size:1.06rem;line-height:1.75;color:rgba(255,255,255,.7)}
 .heroBtns .gold,.final .gold{background:var(--sand);color:var(--navy)}
 .textLink{color:rgba(255,255,255,.7)}
